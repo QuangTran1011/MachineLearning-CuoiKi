@@ -106,7 +106,7 @@ with DAG(
             "--conf", "spark.driver.memory=512m",
             
             # Giảm memory overhead
-            "--conf", "spark.kubernetes.memoryOverheadFactor=0.1",  
+            "--conf", "spark.kubernetes.memoryOverheadFactor=0.25",  
             
             # Resource requests/limits thấp để K8s có thể schedule
             "--conf", "spark.kubernetes.driver.request.cores=250m",
@@ -155,7 +155,7 @@ with DAG(
             "--conf", "spark.driver.memory=512m",
             
             # Giảm memory overhead
-            "--conf", "spark.kubernetes.memoryOverheadFactor=0.1",  
+            "--conf", "spark.kubernetes.memoryOverheadFactor=0.25",  
             
             # Resource requests/limits thấp để K8s có thể schedule
             "--conf", "spark.kubernetes.driver.request.cores=250m",
