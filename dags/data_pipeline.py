@@ -88,8 +88,9 @@ with DAG(
         image=IMAGE,
         cmds=["/opt/spark/bin/spark-submit"],
         arguments=[
-            "--master", "k8s://https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT",
+            "--master", "k8s://https://34.118.224.1:443",
             "--deploy-mode", "cluster",
+            "--conf", "spark.kubernetes.namespace=serving",
             "local:///app/spark_job/sampling.py",
         ],
         get_logs=True,
@@ -98,9 +99,7 @@ with DAG(
         env_vars=env_sa,
     )
 
-    # ----------------------------
-    # 4. Spark job 2
-    # ----------------------------
+    # Spark job 2
     spark_job_2 = KubernetesPodOperator(
         task_id="spark_job_2",
         name="spark-job-2",
@@ -108,8 +107,9 @@ with DAG(
         image=IMAGE,
         cmds=["/opt/spark/bin/spark-submit"],
         arguments=[
-            "--master", "k8s://https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT",
+            "--master", "k8s://https://34.118.224.1:443",
             "--deploy-mode", "cluster",
+            "--conf", "spark.kubernetes.namespace=serving",
             "local:///app/spark_job/sampling_item.py",
         ],
         get_logs=True,
@@ -117,6 +117,7 @@ with DAG(
         secrets=[gcp_sa_secret],
         env_vars=env_sa,
     )
+
 
     upload_to_dbms = KubernetesPodOperator(
         task_id="upload_to_dbms",
