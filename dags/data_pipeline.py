@@ -95,6 +95,8 @@ with DAG(
             "--conf", "spark.kubernetes.authenticate.driver.serviceAccountName=default",
             "--conf", "spark.kubernetes.driver.secrets.gcp-sa-secret=/var/secrets/google",  
             "--conf", "spark.kubernetes.executor.secrets.gcp-sa-secret=/var/secrets/google",
+            "--conf", "spark.kubernetes.driverEnv.PYTHONPATH=/app:/app/modules",
+            "--conf", "spark.kubernetes.executorEnv.PYTHONPATH=/app:/app/modules",
             
             # Set env var cho driver và executor
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
@@ -114,7 +116,6 @@ with DAG(
             "--conf", "spark.kubernetes.executor.request.cores=250m",
             "--conf", "spark.kubernetes.driver.request.memory=384Mi", 
             "--conf", "spark.kubernetes.executor.request.memory=384Mi",
-            "--conf", "spark.submit.pyFiles=/app/modules",
             "local:///app/spark_job/sampling.py",
         ],
         get_logs=True,
@@ -138,6 +139,8 @@ with DAG(
             "--conf", "spark.kubernetes.authenticate.driver.serviceAccountName=default",
             "--conf", "spark.kubernetes.driver.secrets.gcp-sa-secret=/var/secrets/google", 
             "--conf", "spark.kubernetes.executor.secrets.gcp-sa-secret=/var/secrets/google",
+            "--conf", "spark.kubernetes.driverEnv.PYTHONPATH=/app:/app/modules",
+            "--conf", "spark.kubernetes.executorEnv.PYTHONPATH=/app:/app/modules",
             
             # Set env var cho driver và executor
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
@@ -158,7 +161,6 @@ with DAG(
             "--conf", "spark.kubernetes.executor.request.cores=250m",
             "--conf", "spark.kubernetes.driver.request.memory=384Mi",  
             "--conf", "spark.kubernetes.executor.request.memory=384Mi",
-            "--conf", "spark.submit.pyFiles=/app/modules",
             "local:///app/spark_job/sampling_item.py",
         ],
         get_logs=True,
