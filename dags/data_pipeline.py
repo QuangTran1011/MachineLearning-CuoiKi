@@ -102,17 +102,15 @@ with DAG(
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             # Giảm CPU
-            "--conf", "spark.executor.memory=512m",            # memory chính cho executor
-            "--conf", "spark.driver.memory=512m",              # driver memory
-            
-            "--conf", "spark.kubernetes.memoryOverheadFactor=0.2",  # overhead 20%
-            
-            "--conf", "spark.kubernetes.executor.request.memory=600Mi",  # K8s request đủ lớn
-            "--conf", "spark.kubernetes.driver.request.memory=600Mi",
-            
-            "--conf", "spark.kubernetes.executor.limit.memory=700Mi",    # K8s limit
-            "--conf", "spark.kubernetes.driver.limit.memory=700Mi",
-
+            "--conf", "spark.driver.cores=2",
+            "--conf", "spark.executor.cores=2",
+            "--conf", "spark.driver.memory=2g",
+            "--conf", "spark.executor.memory=2g",
+            "--conf", "spark.kubernetes.memoryOverheadFactor=0.2",
+            "--conf", "spark.kubernetes.driver.request.memory=2.4g",
+            "--conf", "spark.kubernetes.executor.request.memory=2.4g",
+            "--conf", "spark.kubernetes.driver.limit.memory=3g",
+            "--conf", "spark.kubernetes.executor.limit.memory=3g",
             "local:///app/spark_job/sampling.py",
         ],
         get_logs=True,
@@ -143,20 +141,15 @@ with DAG(
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             # Giảm CPU
-            "--conf", "spark.driver.cores=1",
-            "--conf", "spark.executor.cores=1",
-            
-            # Giảm memory xuống 512MB (phải để thấp hơn chút để có overhead)
-            "--conf", "spark.executor.memory=512m",            # memory chính cho executor
-            "--conf", "spark.driver.memory=512m",              # driver memory
-            
-            "--conf", "spark.kubernetes.memoryOverheadFactor=0.2",  # overhead 20%
-            
-            "--conf", "spark.kubernetes.executor.request.memory=600Mi",  # K8s request đủ lớn
-            "--conf", "spark.kubernetes.driver.request.memory=600Mi",
-            
-            "--conf", "spark.kubernetes.executor.limit.memory=700Mi",    # K8s limit
-            "--conf", "spark.kubernetes.driver.limit.memory=700Mi",
+            "--conf", "spark.driver.cores=2",
+            "--conf", "spark.executor.cores=2",
+            "--conf", "spark.driver.memory=2g",
+            "--conf", "spark.executor.memory=2g",
+            "--conf", "spark.kubernetes.memoryOverheadFactor=0.2",
+            "--conf", "spark.kubernetes.driver.request.memory=2.4g",
+            "--conf", "spark.kubernetes.executor.request.memory=2.4g",
+            "--conf", "spark.kubernetes.driver.limit.memory=3g",
+            "--conf", "spark.kubernetes.executor.limit.memory=3g",
 
             "local:///app/spark_job/sampling_item.py",
         ],
