@@ -18,7 +18,7 @@ IMAGE = "quangtran1011/airflow_all_in_one:v4"
 default_args = {
     "owner": "airflow",
     "retries": 1,
-    "retry_delay": timedelta(minutes=5),
+    "retry_delay": timedelta(minutes=2),
 }
 
 # Secret mount for GCP service account
