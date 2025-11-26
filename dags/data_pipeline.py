@@ -25,7 +25,7 @@ default_args = {
 gcp_sa_secret = Secret(
     deploy_type='volume',            # mount as volume
     deploy_target='/var/secrets/google',  # mount path in container (was 'mount_point')
-    secret='gcp-sa-key',             # name of K8s secret
+    secret='gcp-sa-secret',             # name of K8s secret
     key='gcp-key.json'               # key file name inside secret
 )
 env_sa = {"GOOGLE_APPLICATION_CREDENTIALS": "/var/secrets/google/gcp-key.json"}
