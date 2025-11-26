@@ -18,7 +18,7 @@ IMAGE = "quangtran1011/airflow_all_in_one:v4"
 default_args = {
     "owner": "airflow",
     "retries": 1,
-    "retry_delay": timedelta(minutes=2),
+    "retry_delay": timedelta(minutes=1),
 }
 
 # Secret mount for GCP service account
@@ -91,6 +91,10 @@ with DAG(
             "--master", "k8s://https://34.118.224.1:443",
             "--deploy-mode", "cluster",
             "--conf", "spark.kubernetes.namespace=serving",
+            "--conf", f"spark.kubernetes.container.image={IMAGE}", 
+            "--conf", "spark.executor.instances=1",
+            "--conf", "spark.executor.memory=2g",
+            "--conf", "spark.driver.memory=2g",
             "local:///app/spark_job/sampling.py",
         ],
         get_logs=True,
@@ -110,6 +114,10 @@ with DAG(
             "--master", "k8s://https://34.118.224.1:443",
             "--deploy-mode", "cluster",
             "--conf", "spark.kubernetes.namespace=serving",
+            "--conf", f"spark.kubernetes.container.image={IMAGE}",  # Thêm dòng này
+            "--conf", "spark.executor.instances=1",
+            "--conf", "spark.executor.memory=2g",
+            "--conf", "spark.driver.memory=2g",
             "local:///app/spark_job/sampling_item.py",
         ],
         get_logs=True,
