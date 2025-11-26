@@ -92,6 +92,12 @@ with DAG(
             "--deploy-mode", "cluster",
             "--conf", "spark.kubernetes.namespace=serving",
             "--conf", f"spark.kubernetes.container.image={IMAGE}", 
+            "--conf", "spark.kubernetes.driver.secrets.gcp-sa-key=/var/secrets/google",
+            "--conf", "spark.kubernetes.executor.secrets.gcp-sa-key=/var/secrets/google",
+            
+            # Set env var cho driver và executor
+            "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
+            "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             "--conf", "spark.executor.instances=1",
             "--conf", "spark.executor.memory=2g",
             "--conf", "spark.driver.memory=2g",
@@ -115,6 +121,12 @@ with DAG(
             "--deploy-mode", "cluster",
             "--conf", "spark.kubernetes.namespace=serving",
             "--conf", f"spark.kubernetes.container.image={IMAGE}",  # Thêm dòng này
+            "--conf", "spark.kubernetes.driver.secrets.gcp-sa-key=/var/secrets/google",
+            "--conf", "spark.kubernetes.executor.secrets.gcp-sa-key=/var/secrets/google",
+            
+            # Set env var cho driver và executor
+            "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
+            "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             "--conf", "spark.executor.instances=1",
             "--conf", "spark.executor.memory=2g",
             "--conf", "spark.driver.memory=2g",
