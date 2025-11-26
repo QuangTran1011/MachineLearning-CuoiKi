@@ -23,10 +23,10 @@ default_args = {
 
 # Secret mount for GCP service account
 gcp_sa_secret = Secret(
-    deploy_type='volume',            # mount as volume
-    secret='gcp-sa-key',             # name of K8s secret
-    mount_point='/var/secrets/google',  # mount path in container
-    key='gcp-key.json'                   # key file name inside secret
+    deploy_type="volume",        # mount secret dưới dạng volume
+    secret="gcp-sa-key",         # tên Kubernetes Secret
+    field="gcp-key.json",        # tên key trong secret
+    mount_path="/var/secrets/google"  # mount vào container
 )
 env_sa = {"GOOGLE_APPLICATION_CREDENTIALS": "/var/secrets/google/gcp-key.json"}
 
