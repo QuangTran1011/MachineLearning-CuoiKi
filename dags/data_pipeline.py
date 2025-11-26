@@ -46,7 +46,7 @@ with DAG(
         task_id="list_files",
         bucket=BUCKET,
         prefix=PREFIX,
-        gcp_conn_id=None,  # sẽ dùng GOOGLE_APPLICATION_CREDENTIALS
+        gcp_conn_id='google_cloud_default',  # sẽ dùng GOOGLE_APPLICATION_CREDENTIALS
         do_xcom_push=True,
     )
 
