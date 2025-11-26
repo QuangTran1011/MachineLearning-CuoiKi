@@ -99,9 +99,21 @@ with DAG(
             # Set env var cho driver và executor
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
-            "--conf", "spark.executor.instances=1",
-            "--conf", "spark.executor.memory=2g",
-            "--conf", "spark.driver.memory=2g",
+            # Giảm CPU
+            "--conf", "spark.driver.cores=1",
+            "--conf", "spark.executor.cores=1",
+            
+            "--conf", "spark.executor.memory=400m",  
+            "--conf", "spark.driver.memory=400m",   
+            
+            # Giảm memory overhead
+            "--conf", "spark.kubernetes.memoryOverheadFactor=0.1", 
+            
+            # Set resource requests thấp
+            "--conf", "spark.kubernetes.driver.request.cores=250m",
+            "--conf", "spark.kubernetes.executor.request.cores=250m",
+            "--conf", "spark.kubernetes.driver.request.memory=384Mi", 
+            "--conf", "spark.kubernetes.executor.request.memory=384Mi",
             "local:///app/spark_job/sampling.py",
         ],
         get_logs=True,
@@ -129,9 +141,22 @@ with DAG(
             # Set env var cho driver và executor
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
-            "--conf", "spark.executor.instances=1",
-            "--conf", "spark.executor.memory=2g",
-            "--conf", "spark.driver.memory=2g",
+            # Giảm CPU
+            "--conf", "spark.driver.cores=1",
+            "--conf", "spark.executor.cores=1",
+            
+            # Giảm memory xuống 512MB (phải để thấp hơn chút để có overhead)
+            "--conf", "spark.executor.memory=400m", 
+            "--conf", "spark.driver.memory=400m",
+            
+            # Giảm memory overhead
+            "--conf", "spark.kubernetes.memoryOverheadFactor=0.1",  
+            
+            # Set resource requests thấp
+            "--conf", "spark.kubernetes.driver.request.cores=250m",
+            "--conf", "spark.kubernetes.executor.request.cores=250m",
+            "--conf", "spark.kubernetes.driver.request.memory=384Mi",  
+            "--conf", "spark.kubernetes.executor.request.memory=384Mi",
             "local:///app/spark_job/sampling_item.py",
         ],
         get_logs=True,
