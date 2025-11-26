@@ -93,8 +93,8 @@ with DAG(
             "--conf", "spark.kubernetes.namespace=serving",
             "--conf", f"spark.kubernetes.container.image={IMAGE}", 
             "--conf", "spark.kubernetes.authenticate.driver.serviceAccountName=default",
-            "--conf", "spark.kubernetes.driver.secrets.gcp-sa-key=/var/secrets/google",
-            "--conf", "spark.kubernetes.executor.secrets.gcp-sa-key=/var/secrets/google",
+            "--conf", "spark.kubernetes.driver.secrets.gcp-sa-secret=/var/secrets/google",  
+            "--conf", "spark.kubernetes.executor.secrets.gcp-sa-secret=/var/secrets/google",
             
             # Set env var cho driver và executor
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
@@ -135,8 +135,8 @@ with DAG(
             "--conf", "spark.kubernetes.namespace=serving",
             "--conf", f"spark.kubernetes.container.image={IMAGE}",  
             "--conf", "spark.kubernetes.authenticate.driver.serviceAccountName=default",
-            "--conf", "spark.kubernetes.driver.secrets.gcp-sa-key=/var/secrets/google",
-            "--conf", "spark.kubernetes.executor.secrets.gcp-sa-key=/var/secrets/google",
+            "--conf", "spark.kubernetes.driver.secrets.gcp-sa-secret=/var/secrets/google", 
+            "--conf", "spark.kubernetes.executor.secrets.gcp-sa-secret=/var/secrets/google",
             
             # Set env var cho driver và executor
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
