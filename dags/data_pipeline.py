@@ -102,8 +102,8 @@ with DAG(
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             # Giảm CPU
-            "--conf", "spark.driver.cores=1",
-            "--conf", "spark.executor.cores=1",
+            "--conf", "spark.driver.cores=0.5",
+            "--conf", "spark.executor.cores=0.5",
             "--conf", "spark.driver.memory=1g",
             "--conf", "spark.executor.memory=1g",
             "--conf", "spark.kubernetes.memoryOverheadFactor=0.2",
@@ -141,8 +141,8 @@ with DAG(
             "--conf", "spark.kubernetes.driverEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             # Giảm CPU
-            "--conf", "spark.driver.cores=1",
-            "--conf", "spark.executor.cores=1",
+            "--conf", "spark.driver.cores=0.5",
+            "--conf", "spark.executor.cores=0.5",
             "--conf", "spark.driver.memory=1g",
             "--conf", "spark.executor.memory=1g",
             "--conf", "spark.kubernetes.memoryOverheadFactor=0.2",
