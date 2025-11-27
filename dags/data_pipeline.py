@@ -171,6 +171,7 @@ with DAG(
         is_delete_operator_pod=True,
         secrets=[gcp_sa_secret],
         env_vars=env_sa,
+        service_account_name="default",
     )
 
     # ----------------------------
@@ -187,6 +188,7 @@ with DAG(
         is_delete_operator_pod=True,
         secrets=[gcp_sa_secret],
         env_vars=env_sa,
+        service_account_name="default",
     )
 
     # ----------------------------
@@ -207,6 +209,7 @@ with DAG(
         is_delete_operator_pod=True,
         secrets=[gcp_sa_secret],
         env_vars=env_sa,
+        service_account_name="default",
     )
 
     # ----------------------------
