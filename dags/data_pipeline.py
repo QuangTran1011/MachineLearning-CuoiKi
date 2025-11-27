@@ -183,7 +183,11 @@ with DAG(
         namespace="serving",
         image=IMAGE,
         cmds=["dbt"],
-        arguments=["build", "--project-dir", "/app/dbt_project/kltn"],
+        arguments=[
+        "build",
+        "--project-dir", "/app/dbt_project/kltn",
+        "--profiles-dir", "/app/dbt_project/kltn" 
+        ],
         get_logs=True,
         is_delete_operator_pod=True,
         secrets=[gcp_sa_secret],
