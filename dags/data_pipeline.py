@@ -203,11 +203,13 @@ with DAG(
         name="feast-materialize",
         namespace="serving",
         image=IMAGE,
-        cmds=["feast"],
+        cmds=["sh", "-c"],
         arguments=[
-            "materialize-incremental",
-            str(datetime.utcnow().date()),
-            "--feature-store", "/app/feature_repo/feature_store.yaml",
+            """
+            cd /app/feature_repo && 
+            CURRENT_TIME=$(date -u +"%Y-%m-%dT%H:%M:%S") &&
+            feast materialize-incremental $CURRENT_TIME
+            """
         ],
         get_logs=True,
         is_delete_operator_pod=True,
