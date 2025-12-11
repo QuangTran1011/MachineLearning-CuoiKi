@@ -91,6 +91,7 @@ with DAG(
             "--master", "k8s://https://34.56.242.183:443",
             "--deploy-mode", "cluster",
             "--conf", "spark.jars.ivy=/tmp/.ivy2",
+            "--conf", "spark.kubernetes.file.upload.path=/tmp/spark-upload",
             "--conf", "spark.jars.packages=com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.20", 
         
             "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
@@ -130,6 +131,7 @@ with DAG(
             "--master", "k8s://https://34.56.242.183:443",
             "--deploy-mode", "cluster",
             "--conf", "spark.jars.ivy=/tmp/.ivy2",
+            "--conf", "spark.kubernetes.file.upload.path=/tmp/spark-upload",
             "--conf", "spark.jars.packages=com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.20", 
         
             "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
