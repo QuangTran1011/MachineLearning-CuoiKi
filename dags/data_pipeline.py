@@ -13,7 +13,7 @@ from airflow.kubernetes.secret import Secret
 BUCKET = "kltn--data"
 PREFIX = "partitiondata/"
 FILE_PATTERN = r"recsys_data_upto_(\d{4})_(\d{2})_(\d{2})\.parquet"
-IMAGE = "quangtran1011/airflow_all_in_one:v8"
+IMAGE = "quangtran1011/airflow_all_in_one:v9"
 
 default_args = {
     "owner": "airflow",
@@ -103,14 +103,9 @@ with DAG(
             "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             # Giảm CPU
             "--conf", "spark.driver.cores=1",
-            "--conf", "spark.executor.cores=1",
+            "--conf", "spark.executor.cores=2",
             "--conf", "spark.driver.memory=1g",
-            "--conf", "spark.executor.memory=1g",
-            "--conf", "spark.kubernetes.memoryOverheadFactor=0.2",
-            "--conf", "spark.kubernetes.driver.request.memory=1g",
-            "--conf", "spark.kubernetes.executor.request.memory=1g",
-            "--conf", "spark.kubernetes.driver.limit.memory=1.5g",
-            "--conf", "spark.kubernetes.executor.limit.memory=1.5g",
+            "--conf", "spark.executor.memory=6g",
             "local:///app/spark_job/sampling.py",
         ],
         get_logs=True,
@@ -142,14 +137,9 @@ with DAG(
             "--conf", "spark.kubernetes.executorEnv.GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/google/gcp-key.json",
             # Giảm CPU
             "--conf", "spark.driver.cores=1",
-            "--conf", "spark.executor.cores=1",
+            "--conf", "spark.executor.cores=2",
             "--conf", "spark.driver.memory=1g",
-            "--conf", "spark.executor.memory=1g",
-            "--conf", "spark.kubernetes.memoryOverheadFactor=0.2",
-            "--conf", "spark.kubernetes.driver.request.memory=1g",
-            "--conf", "spark.kubernetes.executor.request.memory=1g",
-            "--conf", "spark.kubernetes.driver.limit.memory=1.5g",
-            "--conf", "spark.kubernetes.executor.limit.memory=1.5g",
+            "--conf", "spark.executor.memory=14g",
 
             "local:///app/spark_job/sampling_item.py",
         ],
