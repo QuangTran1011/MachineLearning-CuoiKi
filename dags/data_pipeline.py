@@ -13,7 +13,7 @@ from airflow.kubernetes.secret import Secret
 BUCKET = "kltn--data"
 PREFIX = "partitiondata/"
 FILE_PATTERN = r"recsys_data_upto_(\d{4})_(\d{2})_(\d{2})\.parquet"
-IMAGE = "quangtran1011/airflow_all_in_one:v13"
+IMAGE = "quangtran1011/airflow_all_in_one:v14"
 
 default_args = {
     "owner": "airflow",
@@ -90,6 +90,7 @@ with DAG(
         arguments=[
             "--master", "k8s://https://34.56.242.183:443",
             "--deploy-mode", "cluster",
+            "--conf", "spark.jars.ivy=/tmp/.ivy2",
             "--conf", "spark.jars.packages=com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.20", 
         
             "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
@@ -128,6 +129,7 @@ with DAG(
         arguments=[
             "--master", "k8s://https://34.56.242.183:443",
             "--deploy-mode", "cluster",
+            "--conf", "spark.jars.ivy=/tmp/.ivy2",
             "--conf", "spark.jars.packages=com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.20", 
         
             "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
