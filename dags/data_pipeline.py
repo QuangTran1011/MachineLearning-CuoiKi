@@ -90,6 +90,10 @@ with DAG(
         arguments=[
             "--master", "k8s://https://34.118.224.1:443",
             "--deploy-mode", "cluster",
+            "--conf", "spark.jars.packages=com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.20", 
+        
+            "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
+            "--conf", "spark.hadoop.fs.AbstractFileSystem.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS",
             "--conf", "spark.kubernetes.namespace=serving",
             "--conf", f"spark.kubernetes.container.image={IMAGE}", 
             "--conf", "spark.kubernetes.authenticate.driver.serviceAccountName=default",
@@ -124,6 +128,10 @@ with DAG(
         arguments=[
             "--master", "k8s://https://34.118.224.1:443",
             "--deploy-mode", "cluster",
+            "--conf", "spark.jars.packages=com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.20", 
+        
+            "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
+            "--conf", "spark.hadoop.fs.AbstractFileSystem.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS",
             "--conf", "spark.kubernetes.namespace=serving",
             "--conf", f"spark.kubernetes.container.image={IMAGE}",  
             "--conf", "spark.kubernetes.authenticate.driver.serviceAccountName=default",
