@@ -88,7 +88,7 @@ with DAG(
         image=IMAGE,
         cmds=["/opt/spark/bin/spark-submit"],
         arguments=[
-            "--master", "k8s://https://34.56.242.183:443",
+            "--master", "k8s://https://35.202.44.105:443",
             "--deploy-mode", "cluster",
         
             "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
@@ -125,7 +125,7 @@ with DAG(
         image=IMAGE,
         cmds=["/opt/spark/bin/spark-submit"],
         arguments=[
-            "--master", "k8s://https://34.56.242.183:443",
+            "--master", "k8s://https://35.202.44.105:443",
             "--deploy-mode", "cluster",
         
             "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
