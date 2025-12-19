@@ -88,7 +88,7 @@ with DAG(
         image=IMAGE,
         cmds=["/opt/spark/bin/spark-submit"],
         arguments=[
-            "--master", "k8s://https://35.202.44.105:443",
+            "--master", "k8s://https://136.115.43.206:443",
             "--deploy-mode", "cluster",
         
             "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
@@ -108,7 +108,7 @@ with DAG(
             "--conf", "spark.driver.cores=1",
             "--conf", "spark.executor.cores=2",
             "--conf", "spark.driver.memory=1g",
-            "--conf", "spark.executor.memory=10g",
+            "--conf", "spark.executor.memory=14g",
             "local:///app/spark_job/sampling.py",
         ],
         get_logs=True,
@@ -125,7 +125,7 @@ with DAG(
         image=IMAGE,
         cmds=["/opt/spark/bin/spark-submit"],
         arguments=[
-            "--master", "k8s://https://35.202.44.105:443",
+            "--master", "k8s://https://136.115.43.206:443",
             "--deploy-mode", "cluster",
         
             "--conf", "spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
@@ -145,7 +145,7 @@ with DAG(
             "--conf", "spark.driver.cores=1",
             "--conf", "spark.executor.cores=2",
             "--conf", "spark.driver.memory=1g",
-            "--conf", "spark.executor.memory=13g",
+            "--conf", "spark.executor.memory=14g",
 
             "local:///app/spark_job/sampling_item.py",
         ],
