@@ -13,7 +13,7 @@ from airflow.kubernetes.secret import Secret
 BUCKET = "kltn--data"
 PREFIX = "partitiondata/"
 FILE_PATTERN = r"recsys_data_upto_(\d{4})_(\d{2})_(\d{2})\.parquet"
-IMAGE = "quangtran1011/airflow_all_in_one:v17"
+IMAGE = "quangtran1011/airflow_all_in_one:v18"
 
 default_args = {
     "owner": "airflow",
