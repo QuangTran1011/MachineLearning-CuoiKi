@@ -108,7 +108,7 @@ with DAG(
             "--conf", "spark.driver.cores=1",
             "--conf", "spark.executor.cores=2",
             "--conf", "spark.driver.memory=1g",
-            "--conf", "spark.executor.memory=12g",
+            "--conf", "spark.executor.memory=10g",
             "local:///app/spark_job/sampling.py",
         ],
         get_logs=True,
@@ -145,7 +145,7 @@ with DAG(
             "--conf", "spark.driver.cores=1",
             "--conf", "spark.executor.cores=2",
             "--conf", "spark.driver.memory=1g",
-            "--conf", "spark.executor.memory=14g",
+            "--conf", "spark.executor.memory=13g",
 
             "local:///app/spark_job/sampling_item.py",
         ],
